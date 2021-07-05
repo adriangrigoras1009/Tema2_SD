@@ -1,0 +1,77 @@
+
+
+GRIGORAS ADRIAN, 312 CC
+----------------------------------------------
+
+Taskul 1:
+Pentru arbore am folosit o structura in stilul listei(primul este copil, iar restul frati)
+VOID CITIRE_FISIER_TASK1
+-aici citesc radacina arborelui din fisier(matrice + nr_linii si col)
+VOID CONSTRUIRE
+-o functie recursiva care in primu rand afiseaza elemntul din arbore in care sunt
+-parcurge matricea elementului curent si cand gaseste primul spatiu liber de jos in sus aloc memorie pentru un copil
+-apoi copilul are aceeasi tabla doar ca pe spatiul liber adaug jucatoruul al carui rand era
+-dupa ce intra in functia "verificare castig", verifica daca e egala cu 0 sa stim daca jocul nu s-a terminat
+-dupa ce iese din recursivitate dam punem pozitia inapoi ca '-' pentru urmatoarele cazuri posibile
+VOID VERIFICARE_CASTIG
+-iau un contor care verifica daca 2 pozitii consecutive au acelasi caracter
+-prima oara pe coloana, apoi pe linie, apoi pe diagonala
+-daca s-a ajuns la contor == 3 atunci inseamna ca jocul s-a terminat
+-pentru diagonala am pornit din doua colturi ale tablei care se duc fiecare de 2 ori in parti diferite ale hartii pentru a acoperi intreaga arie de joc(4 foruri)
+
+Taskul 2:
+VOID CITIRE_FISIER_TASK2
+-aici citesc inaltimea arborelui si apelez functiile
+VOID CONSTRUCTIE2
+-folosesc o coada in care o sa adaug elementele care au copii
+-citesc radacina si paranteza ei(am facut un camp in care sa salvez prima paranteza)
+-initializam coada si adaugam primul element
+-for-ul il folosim sa in functie de inaltime sa stim unde ne oprim cu citirea
+-apoi scoatem un element din coada
+-facem un for care se termina cand se citesc atatea numere cat era valoarea elem scos din coada
+-alocam memorie pentru toti copiii si daca si el la randul lui e parinte crestem contorul si adaugam in coada(contorul e 0 la inceput pentru fiecare nivel)
+-continuam cat timp contorul e mai mic decat lungimea cozii
+VOID MINIMAX
+-functie recursiva
+-daca e parinte intra in recursivitate si creste contorul(sa stim daca e pozitie de min sau max)
+-daca e copil(sau dupa ce iesim din recursivitate) si e primul copil gasit min si max se initializeaza cu valoarea lui
+-apoi daca un copil are valoare mai mica decat min, min devine acel copil
+-daca are valoare mai mare decat max, max devine acel copil
+-dupa ce am parcurs toti copiii(aux == NULL) daca contor e numar par parintele primeste max, altfel primeste min
+VOID AFISARE
+-am facut afisarea recursiva pentru parinti si pentru copii doar ii afiseaza
+-mai folosesc un contor sa stiu numarul de taburi
+VOID FREE_TASK2
+-stergerea memoriei o fac in aceiasi maniera ca afisarea, recursiv
+
+Taskul 3:
+folosesc primele 2 functii ca la Taskul 2
+VOID ALPHA
+-inainte, le pun alfa si beta din radacina valori mari(spre inf)
+-apoi fiecare copil la inceput ia valoarea alfa si beta de la parinti
+-daca e parinte, intra in recursivitate sa gaseasca si pentru copiii lui
+-daca nu e copil(sau iese din recursivitate) gasim maximul si minimul
+-apoi daca suntem in pozitie impara verificam daca numarul este < ca beta al parintilor
+-daca este noul beta devine acel numar
+-daca este mai mare decat alfa si se afla in pozitie para, parent->alfa devine numarul
+-daca parent->alfa >= parent->beta se muta la urmatorii copii si le sterge memoria recursiv
+afisare si free ca la taskul 2
+
+Bonus:
+VOID CITIRE_FISIER_BONUS
+-typedef struct arbore3
+-citesc inaltimea si numarul jucatorilor si apoi apelez functiile
+VOID CONSTRUCTIE3
+-in principiu acelasi rationament cu coada, doar ca am in plus campul de vector pentru numarul jucatorilor
+VOID PARANOIC
+-acelasi rationament ca la minmax doar ca lucrez cu vectori in loc de o singura valoare
+VOID AFISARE3
+-acelasi rationament ca la afisare doar ca afisez vectorii
+-la final eliberez memoria
+
+MAIN:
+-deschid fisierele pentru citire sau write+append
+-in functie de argumente dau taskurile necesare
+
+
+
